@@ -1,0 +1,16 @@
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/bin/Debug/net9.0/Application.deps.json
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/bin/Debug/net9.0/Application.dll
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/bin/Debug/net9.0/Application.pdb
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/bin/Debug/net9.0/Core.dll
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/bin/Debug/net9.0/Core.pdb
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/obj/Debug/net9.0/Application.csproj.AssemblyReference.cache
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/obj/Debug/net9.0/Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/obj/Debug/net9.0/Application.AssemblyInfoInputs.cache
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/obj/Debug/net9.0/Application.AssemblyInfo.cs
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/obj/Debug/net9.0/Application.csproj.CoreCompileInputs.cache
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/obj/Debug/net9.0/Application.sourcelink.json
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/obj/Debug/net9.0/Applicat.44B5EDA2.Up2Date
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/obj/Debug/net9.0/Application.dll
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/obj/Debug/net9.0/refint/Application.dll
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/obj/Debug/net9.0/Application.pdb
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/obj/Debug/net9.0/ref/Application.dll

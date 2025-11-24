@@ -1,0 +1,13 @@
+class Role {
+  final int? id;
+  final String? name;
+  final String? descriptions;
+  Role({required this.id, required this.name, required this.descriptions});
+  factory Role.fromJson(Map<String, dynamic> json) {
+    return Role(
+      id: json['id'],
+      name: json['name'],
+      descriptions: json['description'],
+    );
+  }
+}
