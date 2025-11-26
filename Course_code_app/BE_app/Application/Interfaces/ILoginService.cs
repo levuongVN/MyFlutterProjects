@@ -4,5 +4,5 @@ namespace Application.Interfaces;
 
 public interface ILoginServices
 {
-    public Task<User> GetUserByEmailAsync(string email); // by email
+    public Task<(bool success, string message ,User? user)> LoginAsync(string email, string password); // by email
 }

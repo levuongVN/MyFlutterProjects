@@ -9,27 +9,31 @@ namespace Web.Controllers;
 public class LoginController : ControllerBase
 {
     private readonly ILoginServices _loginService;
-    public LoginController(ILoginServices loginServices)
+    private readonly IJwtService _jwtService;
+    public LoginController(ILoginServices loginServices, IJwtService jwtService)
     {
         _loginService = loginServices;
+        _jwtService = jwtService;
     }
-
-    [HttpGet]
-    public async Task<ActionResult<UserDto>> GetUserByEmail()
+    [HttpPost]
+    public async Task<ActionResult<userLoginDTO>> Login([FromBody] userLoginDTO request)
     {
-        try
+        var result = await _loginService.LoginAsync(request.Email, request.Password);
+
+        if (!result.success)
         {
-            var user = await _loginService.GetUserByEmailAsync("levanvuongsg43@gmail.com");
-            if (user == null)
-            {
-                return NotFound("User not found");
-            }
-            return Ok(user);
+            if (!result.success) return BadRequest(new { result.message });
         }
-        catch (Exception ex)
+        var dto = new userLoginDTO
         {
-            // Ghi log lỗi ở đây
-            return StatusCode(500, $"Internal server error: {ex.Message}");
-        }
+            Id = result.user!.Id,
+            Email = result.user.Email,
+            RoleId = result.user.RoleId,
+            FullName = result.user.FullName,
+            AvatarUrl = result.user.AvatarUrl,
+            Bio = result.user.Bio,
+        };
+        var token = _jwtService.GenerateToken(dto);
+        return Ok( new{user = dto,token});
     }
 }

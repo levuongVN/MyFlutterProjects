@@ -90,3 +90,7 @@
 /Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Web/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Web/bin/Debug/net9.0/Microsoft.Extensions.DependencyModel.dll
 /Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Web/bin/Debug/net9.0/Scrutor.dll
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Web/bin/Debug/net9.0/BCrypt.Net-Next.dll
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Web/bin/Debug/net9.0/DotNetEnv.dll
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Web/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Web/bin/Debug/net9.0/Sprache.dll

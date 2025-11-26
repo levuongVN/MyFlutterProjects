@@ -25,9 +25,6 @@ class LoginViewModel with ChangeNotifier {
   Future<void> login() async {
     _isLoading = true;
     _error = '';
-    notifyListeners();
-    await Future.delayed(const Duration(seconds: 2));
-    _isLoading = false;
     if (_email.isEmpty || _password.isEmpty) {
       _error = 'Vui lòng nhập đầy đủ thông tin';
     }else if(!EmailValidator.validate(_email)){
@@ -38,6 +35,7 @@ class LoginViewModel with ChangeNotifier {
     } else {
       _error = '';
     }
+    
     notifyListeners();
   }
 }

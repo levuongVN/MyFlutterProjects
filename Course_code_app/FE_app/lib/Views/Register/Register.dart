@@ -29,7 +29,13 @@ class _RegisterViewState extends State<RegisterView> {
     _viewModel.addListener(_onViewModelChanged);
   }
 
-  void _onViewModelChanged() => setState(() {});
+  void _onViewModelChanged() {
+    setState(() {});
+    if (_viewModel.isSuccess == true) {
+      Navigator.pop(context);
+    }
+  }
+
   void _register() => _viewModel.register();
   void _backToLogin() => Navigator.pop(context);
 

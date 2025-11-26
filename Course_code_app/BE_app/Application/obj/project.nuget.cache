@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ZBJyzUTG+N4=",
+  "dgSpecHash": "tDLUUf2QtNE=",
   "success": true,
   "projectFilePath": "/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/vuongle/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

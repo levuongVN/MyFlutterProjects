@@ -1,17 +1,18 @@
+import 'package:app_course_code/Models/register.dart';
+import 'package:app_course_code/Services/Authentication/Auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:email_validator/email_validator.dart';
 
 enum UserRole { user, admin }
+
 enum RegisterStep { role, info, verification }
 
 class RegisterViewModel with ChangeNotifier {
-
   String _fullName = '';
   String _email = '';
   String _password = '';
   String _confirmPassword = '';
   String _phone = '';
-  
 
   UserRole _selectedRole = UserRole.user;
   RegisterStep _currentStep = RegisterStep.role;
@@ -19,13 +20,11 @@ class RegisterViewModel with ChangeNotifier {
   String _error = '';
   bool? _isSuccess;
 
-
   String? _fullNameError;
   String? _emailError;
   String? _passwordError;
   String? _confirmPasswordError;
   String? _phoneError;
-
 
   String get fullName => _fullName;
   String get email => _email;
@@ -37,14 +36,12 @@ class RegisterViewModel with ChangeNotifier {
   bool get isLoading => _isLoading;
   String get error => _error;
   bool? get isSuccess => _isSuccess;
-  
 
   String? get fullNameError => _fullNameError;
   String? get emailError => _emailError;
   String? get passwordError => _passwordError;
   String? get confirmPasswordError => _confirmPasswordError;
   String? get phoneError => _phoneError;
-
 
   void setFullName(String value) {
     _fullName = value;
@@ -146,7 +143,6 @@ class RegisterViewModel with ChangeNotifier {
     return true;
   }
 
-
   void _clearValidationErrors() {
     _fullNameError = null;
     _emailError = null;
@@ -159,7 +155,7 @@ class RegisterViewModel with ChangeNotifier {
   // Validate current step
   bool _validateCurrentStep() {
     _clearValidationErrors();
-    
+
     bool isValid = true;
 
     if (_currentStep == RegisterStep.info) {
@@ -220,14 +216,20 @@ class RegisterViewModel with ChangeNotifier {
 
     _isLoading = true;
     _error = '';
-    notifyListeners();
-
-    // Simulate API call
-    await Future.delayed(const Duration(seconds: 2));
-
-    // Mock success
-    _isSuccess = true;
+    final registerRequest = RegisterRequest(
+      fullName: _fullName,
+      email: _email,
+      password: _password,
+      roleId: 1,
+    );
+    Object success = await Auth().register(registerRequest);
     _isLoading = false;
+    if (success == true) {
+      _isSuccess = true;
+    }else{
+      _isSuccess = false;
+      _error = "Đã có lỗi xảy ra. Vui lòng thử lại sau!";
+    }
     notifyListeners();
   }
 

@@ -12,8 +12,20 @@ public class LoginServices : ILoginServices
         _loginRepository = loginRepository;
     }
 
-    public async Task<User> GetUserByEmailAsync(string email)
+    public async Task<(bool success, string message, User? user)> LoginAsync(string email, string password)
     {
-        return await _loginRepository.GetUserAsync(email);
+        var user = await _loginRepository.GetUserAsync(email);
+        if (user == null)
+        {
+            return (false, "Email không tồn tại", null);
+        }
+        bool isPasswordCorrect = BCrypt.Net.BCrypt.Verify(password, user.PasswordHash);
+
+        if (!isPasswordCorrect)
+        {
+            return (false, "Sai Mật khẩu", null);
+        }
+        return (true, "", user);
+
     }
 }
