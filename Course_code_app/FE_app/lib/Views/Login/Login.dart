@@ -1,11 +1,12 @@
 import 'package:app_course_code/ViewModels/Login/ViewModelsLogin.dart';
+import 'package:app_course_code/Views/Home.dart';
 import 'package:app_course_code/Views/Login/ForgotPassword.dart';
 import 'package:app_course_code/Views/Register/Register.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatefulWidget {
-  const LoginView({super.key});
-
+  final String? errorMessage;
+  const LoginView({super.key, this.errorMessage});
   @override
   State<LoginView> createState() => _LoginViewState();
 }
@@ -19,11 +20,23 @@ class _LoginViewState extends State<LoginView> {
   void initState() {
     super.initState();
     _viewModel.addListener(_onViewModelChanged);
+    if(widget.errorMessage != null && widget.errorMessage!.isNotEmpty){
+        _viewModel.setError(widget.errorMessage!);
+    }
   }
 
-  void _onViewModelChanged() => setState(
-    () {},
-  ); // to force the widget rebuild when data on viewmodels changes
+  void _onViewModelChanged() {
+    setState(() {});
+
+    if (_viewModel.isSuccess) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => HomePage()),
+        );
+      });
+    }
+  }
 
   void _login() => _viewModel.login(); // call function to handle
   @override

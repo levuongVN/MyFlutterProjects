@@ -14,14 +14,14 @@ public class JwtService : IJwtService
     private readonly string _secretKey;
     private readonly string _issuer;
     private readonly string _audience;
-    private readonly int _expiryMinutes;
+    private readonly double _expiryMinutes;
 
     public JwtService(IConfiguration configuration)
     {
         _secretKey = configuration["JwtSettings:SecretKey"]!;
         _issuer = configuration["JwtSettings:Issuer"]!;
         _audience = configuration["JwtSettings:Audience"]!;
-        _expiryMinutes = int.Parse(configuration["JwtSettings:ExpiryMinutes"]!);
+        _expiryMinutes = double.Parse(configuration["JwtSettings:ExpiryMinutes"]!);
     }
 
     public string GenerateToken(userLoginDTO dto)
