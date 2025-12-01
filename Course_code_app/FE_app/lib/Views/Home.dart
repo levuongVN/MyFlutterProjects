@@ -16,8 +16,18 @@ class _NavigationExampleState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Code App'),
+        title: Column(
+          children: [
+            Row(
+              children: [
+                Text('Hi userNameHere ', style: TextStyle(color: Colors.black)),
+                Icon(Icons.waving_hand, color: Colors.amber),
+              ],
+            ),
+          ],
+        ),
         backgroundColor: Colors.blue[800],
+        toolbarHeight: 100.5,
       ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
@@ -25,7 +35,8 @@ class _NavigationExampleState extends State<HomePage> {
             currentPageIndex = index;
           });
         },
-        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected, // <- chỉ show label tab đang chọn
+        labelBehavior: NavigationDestinationLabelBehavior
+            .onlyShowSelected, // <- chỉ show label tab đang chọn
         indicatorColor: Colors.amber,
         selectedIndex: currentPageIndex,
         destinations: const [
@@ -38,18 +49,9 @@ class _NavigationExampleState extends State<HomePage> {
             icon: Icon(Icons.notifications),
             label: 'Notification',
           ),
-          NavigationDestination(
-            icon: Icon(Icons.smart_toy),
-            label: 'Chatbot',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.book),
-            label: 'My Courses',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
+          NavigationDestination(icon: Icon(Icons.smart_toy), label: 'Chatbot'),
+          NavigationDestination(icon: Icon(Icons.book), label: 'My Courses'),
+          NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),
       body: <Widget>[
@@ -61,10 +63,7 @@ class _NavigationExampleState extends State<HomePage> {
               height: 200,
               width: double.infinity,
               child: Center(
-                child: Text(
-                  'Home Page',
-                  style: theme.textTheme.headlineMedium,
-                ),
+                child: Text('Home Page', style: theme.textTheme.headlineMedium),
               ),
             ),
           ),
