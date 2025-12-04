@@ -1,4 +1,7 @@
+import 'package:app_course_code/Views/Home/homeWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:typewritertext/typewritertext.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,20 +18,6 @@ class _NavigationExampleState extends State<HomePage> {
     final ThemeData theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Column(
-          children: [
-            Row(
-              children: [
-                Text('Hi userNameHere ', style: TextStyle(color: Colors.black)),
-                Icon(Icons.waving_hand, color: Colors.amber),
-              ],
-            ),
-          ],
-        ),
-        backgroundColor: Colors.blue[800],
-        toolbarHeight: 100.5,
-      ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           setState(() {
@@ -56,19 +45,7 @@ class _NavigationExampleState extends State<HomePage> {
       ),
       body: <Widget>[
         // 1️⃣ Home
-        Center(
-          child: Card(
-            margin: const EdgeInsets.all(16),
-            child: SizedBox(
-              height: 200,
-              width: double.infinity,
-              child: Center(
-                child: Text('Home Page', style: theme.textTheme.headlineMedium),
-              ),
-            ),
-          ),
-        ),
-
+        Homewidget(),
         // 2️⃣ Notifications
         ListView(
           padding: const EdgeInsets.all(8),

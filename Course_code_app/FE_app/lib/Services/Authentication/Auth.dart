@@ -1,9 +1,11 @@
 import 'package:app_course_code/Models/login.dart';
 import 'package:app_course_code/Models/register.dart';
 import 'package:app_course_code/Models/user.dart';
+import 'package:app_course_code/config/baseURL.dart';
 import 'package:http/http.dart' as http;
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'dart:convert';
+
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,7 +14,7 @@ class Auth {
     // print(jsonEncode(request.toJson()));
     try {
       final response = await http.post(
-        Uri.parse('http://localhost:5079/api/Login'),
+        Uri.parse('${BaseUrl.api}/api/Login'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(request.toJson()),
       );
@@ -34,7 +36,7 @@ class Auth {
     // print(jsonEncode(request.toJson()));
     try {
       final response = await http.post(
-        Uri.parse('http://localhost:5079/api/Register'),
+        Uri.parse('${BaseUrl.api}/api/Register'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(request.toJson()),
       );

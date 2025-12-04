@@ -1,5 +1,5 @@
 import 'package:app_course_code/ViewModels/Login/ViewModelsLogin.dart';
-import 'package:app_course_code/Views/Home.dart';
+import 'package:app_course_code/Views/Index.dart';
 import 'package:app_course_code/Views/Login/ForgotPassword.dart';
 import 'package:app_course_code/Views/Register/Register.dart';
 import 'package:flutter/material.dart';
@@ -31,8 +31,7 @@ class _LoginViewState extends State<LoginView> {
     if (_viewModel.isSuccess) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => HomePage()),
+          context,MaterialPageRoute(builder: (_) => HomePage()),
         );
       });
     }

@@ -1,5 +1,5 @@
 import 'package:app_course_code/Services/Authentication/Auth.dart';
-import 'package:app_course_code/Views/Home.dart';
+import 'package:app_course_code/Views/Index.dart';
 import 'package:app_course_code/Views/Login/Login.dart';
 import 'package:flutter/material.dart';
 

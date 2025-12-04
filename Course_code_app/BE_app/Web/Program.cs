@@ -47,8 +47,9 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy.WithOrigins(
-                    "http://localhost:*",// Any localhost port
-                    "http://127.0.0.1:*"
+                    "http://localhost:*",
+                    "http://127.0.0.1:*",
+                    "http://10.0.2.2:*"
             )
                 .AllowAnyHeader()
                 .AllowAnyMethod()
@@ -83,9 +84,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 var app = builder.Build();
 
-// 👇 SỬ DỤNG CORS MIDDLEWARE (QUAN TRỌNG!)
-app.UseCors("AllowFlutter");
-
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -93,6 +91,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowFlutter");
 app.UseAuthorization();
 app.MapControllers();
 
