@@ -1,7 +1,5 @@
 import 'package:app_course_code/Views/Home/homeWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:typewritertext/typewritertext.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

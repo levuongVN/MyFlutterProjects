@@ -16,6 +16,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Course> Courses { get; set; }
     public DbSet<Enrollment> Enrollments { get; set; }
     public DbSet<Lesson> Lessons { get; set; }
+    public DbSet<LessonBlock> LessonBlocks { get; set; }
     public DbSet<Quiz> Quizzes { get; set; }
     public DbSet<QuizQuestion> QuizQuestions { get; set; }
     public DbSet<QuizOption> QuizOptions { get; set; }
@@ -113,6 +114,12 @@ public class ApplicationDbContext : DbContext
             .WithMany(c => c.Lessons)
             .HasForeignKey(l => l.CourseId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<LessonBlock>()
+        .HasOne(lb => lb.Lesson)
+        .WithMany(l => l.LessonBlocks)
+        .HasForeignKey(lb => lb.LessonId)
+        .OnDelete(DeleteBehavior.Restrict);
 
         // Quiz -> Lesson (One to One) - Optional
         modelBuilder.Entity<Quiz>()

@@ -1,3 +1,4 @@
+import 'package:app_course_code/Views/Lesson/Lesson.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:typewritertext/typewritertext.dart';
@@ -278,71 +279,85 @@ class _NavigationExampleState extends State<Homewidget> {
                       ],
                     ),
                     child: GestureDetector(
-                      onTap: () => print('tapped'),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              return CourseDetailScreen(
+                                courseTitle: 'Flutter Zero to Hero',
+                                courseDescription:'Học Flutter từ cơ bản đến nâng cao, xây dựng ứng dụng thực tế',
+                                instructor: 'Nguyễn Văn A',
+                                progress: 0.25,
+                              );
+                            },
+                          ),
+                        );
+                      },
                       child: Row(
-                      children: [
-                        Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            color: primaryColor,
-                            borderRadius: BorderRadius.circular(15),
+                        children: [
+                          Container(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              color: primaryColor,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: const Icon(
+                              Icons.code,
+                              color: Colors.white,
+                              size: 30,
+                            ),
                           ),
-                          child: const Icon(
-                            Icons.code,
-                            color: Colors.white,
-                            size: 30,
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Flutter Zero to Hero',
-                                style: GoogleFonts.roboto(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.grey[800],
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                'Xây dựng ứng dụng di động với Dart',
-                                style: GoogleFonts.roboto(
-                                  fontSize: 14,
-                                  color: Colors.grey[600],
-                                ),
-                              ),
-                              const SizedBox(height: 12),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: LinearProgressIndicator(
-                                      value: 0.65,
-                                      backgroundColor: Colors.grey[300],
-                                      color: primaryColor,
-                                      borderRadius: BorderRadius.circular(10),
-                                      minHeight: 8,
-                                    ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Flutter Zero to Hero',
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.grey[800],
                                   ),
-                                  const SizedBox(width: 12),
-                                  Text(
-                                    '65%',
-                                    style: GoogleFonts.roboto(
-                                      fontWeight: FontWeight.w600,
-                                      color: primaryColor,
-                                    ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  'Xây dựng ứng dụng di động với Dart',
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 14,
+                                    color: Colors.grey[600],
                                   ),
-                                ],
-                              ),
-                            ],
+                                ),
+                                const SizedBox(height: 12),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: LinearProgressIndicator(
+                                        value: 0.65,
+                                        backgroundColor: Colors.grey[300],
+                                        color: primaryColor,
+                                        borderRadius: BorderRadius.circular(10),
+                                        minHeight: 8,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Text(
+                                      '65%',
+                                      style: GoogleFonts.roboto(
+                                        fontWeight: FontWeight.w600,
+                                        color: primaryColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                    )
                   ),
 
                   const SizedBox(height: 24),

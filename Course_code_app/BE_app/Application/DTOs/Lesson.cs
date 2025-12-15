@@ -1,6 +1,7 @@
-namespace Core.Entities;
+// Application/DTOs/LessonDto.cs
+namespace Application.DTOs;
 
-public class Lesson
+public class LessonDto
 {
     public int Id { get; set; }
     public int CourseId { get; set; }
@@ -8,11 +9,6 @@ public class Lesson
     public string? ContentSummary { get; set; }
     public int Position { get; set; }
     public string Status { get; set; } = "Chưa học";
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
-
-    // Navigation properties
-    public Course Course { get; set; } = null!;
-    public Quiz? Quiz { get; set; }
-    public ICollection<LessonBlock> LessonBlocks { get; set; } = new List<LessonBlock>();
 }
