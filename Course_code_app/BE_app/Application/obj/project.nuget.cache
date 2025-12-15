@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "tDLUUf2QtNE=",
+  "dgSpecHash": "jtSzdLw9x1Y=",
   "success": true,
-  "projectFilePath": "/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/Application.csproj",
+  "projectFilePath": "C:\\develop\\MyFlutterProjects\\Course_code_app\\BE_app\\Application\\Application.csproj",
   "expectedPackageFiles": [
-    "/Users/vuongle/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512"
+    "C:\\Users\\Admin\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.11\\microsoft.netcore.app.ref.9.0.11.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.11\\microsoft.windowsdesktop.app.ref.9.0.11.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.11\\microsoft.aspnetcore.app.ref.9.0.11.nupkg.sha512"
   ],
   "logs": []
 }

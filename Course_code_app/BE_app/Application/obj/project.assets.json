@@ -72,19 +72,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/vuongle/.nuget/packages/": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/Application.csproj",
+      "projectUniqueName": "C:\\develop\\MyFlutterProjects\\Course_code_app\\BE_app\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/Application.csproj",
-      "packagesPath": "/Users/vuongle/.nuget/packages/",
-      "outputPath": "/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Application/obj/",
+      "projectPath": "C:\\develop\\MyFlutterProjects\\Course_code_app\\BE_app\\Application\\Application.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\develop\\MyFlutterProjects\\Course_code_app\\BE_app\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/vuongle/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -96,8 +96,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Core/Core.csproj": {
-              "projectPath": "/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Core/Core.csproj"
+            "C:\\develop\\MyFlutterProjects\\Course_code_app\\BE_app\\Core\\Core.csproj": {
+              "projectPath": "C:\\develop\\MyFlutterProjects\\Course_code_app\\BE_app\\Core\\Core.csproj"
             }
           }
         }
@@ -112,7 +112,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net9.0": {
@@ -134,12 +134,26 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[9.0.11, 9.0.11]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[9.0.11, 9.0.11]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[9.0.11, 9.0.11]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

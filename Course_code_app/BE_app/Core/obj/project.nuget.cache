@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "uA29uezXMiA=",
+  "dgSpecHash": "8Vv/+KAKaOY=",
   "success": true,
-  "projectFilePath": "/Users/vuongle/ImportanDocuments/MyFlutterProjects/Course_code_app/BE_app/Core/Core.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\develop\\MyFlutterProjects\\Course_code_app\\BE_app\\Core\\Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.11\\microsoft.netcore.app.ref.9.0.11.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.11\\microsoft.windowsdesktop.app.ref.9.0.11.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.11\\microsoft.aspnetcore.app.ref.9.0.11.nupkg.sha512"
+  ],
   "logs": []
 }
