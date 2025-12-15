@@ -18,4 +18,16 @@ class Lesson {
     this.createdAt,
     this.updatedAt,
   });
+  factory Lesson.fromJson(Map<String, dynamic> json) {
+    return Lesson(
+      id: json['id'],
+      courseId: json['courseId'],
+      title: json['title'],
+      contentSummary: json['contentSummary'],
+      position: json['position'],
+      status: json['status'],
+      createdAt: json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null,
+      updatedAt: json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
+    );
+  }
 }

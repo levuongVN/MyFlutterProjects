@@ -1,6 +1,8 @@
+import 'package:app_course_code/ViewModels/Lesson/ViewModelLessons.dart';
 import 'package:app_course_code/Views/Lesson/Lesson.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:typewritertext/typewritertext.dart';
 
 class Homewidget extends StatefulWidget {
@@ -283,14 +285,10 @@ class _NavigationExampleState extends State<Homewidget> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (BuildContext context) {
-                              return CourseDetailScreen(
-                                courseTitle: 'Flutter Zero to Hero',
-                                courseDescription:'Học Flutter từ cơ bản đến nâng cao, xây dựng ứng dụng thực tế',
-                                instructor: 'Nguyễn Văn A',
-                                progress: 0.25,
-                              );
-                            },
+                            builder: (_) => ChangeNotifierProvider(
+                              create: (_) => Viewmodellessons()..fetchLessons(),
+                              child: const CourseDetailScreen(courseTitle: 'Title', courseDescription: 'text description', instructor: 'Lê Văn A',),
+                            ),
                           ),
                         );
                       },

@@ -25,6 +25,7 @@ public class LessonRepository : ILessonRepository
     {
         var lessons = await _context.Lessons
                     .Where(l => l.Id == 2)
+                    .OrderBy(l => l.Position)
                     .ToListAsync();
         return lessons;
     }

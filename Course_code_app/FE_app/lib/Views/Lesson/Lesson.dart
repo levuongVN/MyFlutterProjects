@@ -1,5 +1,7 @@
 import 'package:app_course_code/Models/lesson.dart';
+import 'package:app_course_code/ViewModels/Lesson/ViewModelLessons.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CourseDetailScreen extends StatefulWidget {
   final String courseTitle;
@@ -12,7 +14,7 @@ class CourseDetailScreen extends StatefulWidget {
     required this.courseTitle,
     required this.courseDescription,
     required this.instructor,
-    this.progress = 0.0,
+    this.progress = 1.0,
   });
 
   @override
@@ -20,22 +22,14 @@ class CourseDetailScreen extends StatefulWidget {
 }
 
 class _CourseDetailScreenState extends State<CourseDetailScreen> {
-  List<Lesson> lessons = [
-    Lesson(
-      id: 1,
-      courseId: 1,
-      title: 'Giới thiệu về Flutter',
-      contentSummary: 'Tổng quan về Flutter và Dart',
-      position: 1,
-      status: 'Đã hoàn thành',
-      createdAt: DateTime.now(),
-      updatedAt: DateTime.now(),
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
-    final completedLessons = lessons.where((l) => l.status == 'Đã hoàn thành').length;
+    final viewModel = context.watch<Viewmodellessons>();
+    final lessons = viewModel.lessons;
+
+    final completedLessons = lessons
+        .where((l) => l.status == 'Đã hoàn thành')
+        .length;
     final totalLessons = lessons.length;
 
     return Scaffold(
@@ -45,12 +39,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.share),
-            onPressed: () {},
-          ),
-        ],
+        actions: [IconButton(icon: const Icon(Icons.share), onPressed: () {})],
       ),
       body: Column(
         children: [
@@ -71,10 +60,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                 const SizedBox(height: 8),
                 Text(
                   widget.courseDescription,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey[700],
-                  ),
+                  style: TextStyle(fontSize: 14, color: Colors.grey[700]),
                 ),
                 const SizedBox(height: 12),
                 Row(
@@ -126,7 +112,9 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                     LinearProgressIndicator(
                       value: widget.progress,
                       backgroundColor: Colors.grey[300],
-                      valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
+                      valueColor: const AlwaysStoppedAnimation<Color>(
+                        Colors.green,
+                      ),
                       minHeight: 8,
                       borderRadius: BorderRadius.circular(4),
                     ),
@@ -145,9 +133,8 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                 final lesson = lessons[index];
                 return LessonCard(
                   lesson: lesson,
-                  index: index + 1,
+                  index: lesson.position,
                   onTap: () {
-                    // Xử lý khi click vào bài học
                     _handleLessonTap(lesson);
                   },
                 );
@@ -172,25 +159,23 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
 
 class LessonCard extends StatelessWidget {
   final Lesson lesson;
-  final int index;
+  final int? index;
   final VoidCallback onTap;
 
   const LessonCard({
     super.key,
     required this.lesson,
-    required this.index,
+    this.index,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     final isCompleted = lesson.status == 'Đã hoàn thành';
-    
+
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       elevation: 2,
       child: InkWell(
         onTap: onTap,
@@ -199,7 +184,7 @@ class LessonCard extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Row(
             children: [
-              // Số thứ tự bài học
+              // Số thứ tự bài học, nếu học xong thì hiển thị dấu check
               Container(
                 width: 36,
                 height: 36,
@@ -246,30 +231,9 @@ class LessonCard extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       lesson.contentSummary ?? '',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey[600],
-                      ),
+                      style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.schedule,
-                          size: 16,
-                          color: Colors.grey,
-                        ),
-                        const SizedBox(width: 4),
-                        const Text(
-                          '30 phút',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
                     ),
                   ],
                 ),
@@ -300,18 +264,12 @@ class LessonDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(lesson.title),
-      ),
+      appBar: AppBar(title: Text(lesson.title)),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.article,
-              size: 64,
-              color: Colors.blue,
-            ),
+            const Icon(Icons.article, size: 64, color: Colors.blue),
             const SizedBox(height: 20),
             Text(
               lesson.title,
