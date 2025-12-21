@@ -16,13 +16,16 @@ class LessonServices {
     }
   }
 
-  Future<List<Lessoncontent>> fetchLessonsContents() async {
-    final response = await http.get(Uri.parse('${BaseUrl.api}/api/Lesson/LessonContent'));
-    if (response.statusCode == 200) {
-      final List<dynamic> jsonList = json.decode(response.body);
-      return jsonList.map((jsonItem) => Lessoncontent.fromJson(jsonItem)).toList();
-    } else {
-      throw Exception('Failed to load lesson contents');
+  Future<Lessoncontent> fetchLessonContent() async {
+    final response = await http.get(
+      Uri.parse('${BaseUrl.api}/api/Lesson/LessonContent'),
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to load lesson content');
     }
+
+    final jsonData = jsonDecode(response.body);
+    return Lessoncontent.fromJson(jsonData);
   }
 }
