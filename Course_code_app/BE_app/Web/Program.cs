@@ -72,7 +72,7 @@ builder.Services.Scan(scan => scan
     .AsImplementedInterfaces()
     .WithScopedLifetime()
 );
-
+builder.Services.AddScoped<LessonDeltaAssembler>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

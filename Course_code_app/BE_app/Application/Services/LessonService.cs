@@ -1,12 +1,15 @@
 using Application.DTOs;
 using Application.Interfaces;
+using Application.Responses;
 
 public class lessonServices : IlessonServices
 {
     private readonly ILessonRepository _lessonRepository;
-    public lessonServices(ILessonRepository lessonRepository)
+    private readonly LessonDeltaAssembler _assembler;
+    public lessonServices(ILessonRepository lessonRepository, LessonDeltaAssembler assembler)
     {
         _lessonRepository = lessonRepository;
+        _assembler = assembler;
     }
 
     public async Task<List<LessonDto>> GetLessonsAsync()
@@ -25,32 +28,18 @@ public class lessonServices : IlessonServices
         }).ToList();
     }
 
-    public async Task<List<LessonBlockDto>> GetLessonsBlocksAsync()
+    public async Task<LessonBlockResponse> GetLessonsBlocksAsync()
     {
         var lessonBlocks = await _lessonRepository.GetLessonBlockAsync();
-
-        return lessonBlocks.Select(lessonBlock => new LessonBlockDto
+         var blockDtos = lessonBlocks.Select(b => new LessonBlockDto
         {
-            Id = lessonBlock.Id,
-            LessonId = lessonBlock.LessonId,
-            BlockType = lessonBlock.BlockType,
-            SortOrder = lessonBlock.SortOrder,
-            Content = lessonBlock.ContentJson,
-            Metadata = lessonBlock.MetadataJson,
-            Lesson = lessonBlock.Lesson != null ? new LessonDto
-            {
-                Id = lessonBlock.Lesson.Id,
-                CourseId = lessonBlock.Lesson.CourseId,
-                Title = lessonBlock.Lesson.Title,
-                ContentSummary = lessonBlock.Lesson.ContentSummary,
-                Position = lessonBlock.Lesson.Position,
-                Status = lessonBlock.Lesson.Status,
-                CreatedAt = lessonBlock.Lesson.CreatedAt,
-                UpdatedAt = lessonBlock.Lesson.UpdatedAt
-            } : null
+            Id = b.Id,
+            LessonId = b.LessonId,
+            BlockType = b.BlockType,
+            SortOrder = b.SortOrder,
+            Content = b.ContentJson,
+            Metadata = b.MetadataJson
         }).ToList();
+        return _assembler.Build(blockDtos);
     }
-
-
-
 }

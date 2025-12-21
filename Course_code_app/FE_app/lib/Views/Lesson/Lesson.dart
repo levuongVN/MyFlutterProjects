@@ -1,5 +1,7 @@
 import 'package:app_course_code/Models/lesson.dart';
 import 'package:app_course_code/ViewModels/Lesson/ViewModelLessons.dart';
+import 'package:app_course_code/Views/Cards/lesson_card.dart';
+import 'package:app_course_code/Views/Lesson/LessonContents.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,6 +28,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
   Widget build(BuildContext context) {
     final viewModel = context.watch<Viewmodellessons>();
     final lessons = viewModel.lessons;
+    final isLoading = viewModel.isLoading;
 
     final completedLessons = lessons
         .where((l) => l.status == 'Đã hoàn thành')
@@ -126,20 +129,20 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
 
           // Danh sách bài học
           Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(16),
-              itemCount: lessons.length,
-              itemBuilder: (context, index) {
-                final lesson = lessons[index];
-                return LessonCard(
-                  lesson: lesson,
-                  index: lesson.position,
-                  onTap: () {
-                    _handleLessonTap(lesson);
-                  },
-                );
-              },
-            ),
+            child: isLoading
+                ? const Center(child: CircularProgressIndicator())
+                : ListView.builder(
+                    padding: const EdgeInsets.all(16),
+                    itemCount: lessons.length,
+                    itemBuilder: (context, index) {
+                      final lesson = lessons[index];
+                      return LessonCard(
+                        lesson: lesson,
+                        index: lesson.position,
+                        onTap: () => _handleLessonTap(lesson),
+                      );
+                    },
+                  ),
           ),
         ],
       ),
@@ -147,141 +150,12 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
   }
 
   void _handleLessonTap(Lesson lesson) {
-    // Điều hướng đến màn hình chi tiết bài học
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => LessonDetailScreen(lesson: lesson),
-      ),
-    );
-  }
-}
-
-class LessonCard extends StatelessWidget {
-  final Lesson lesson;
-  final int? index;
-  final VoidCallback onTap;
-
-  const LessonCard({
-    super.key,
-    required this.lesson,
-    this.index,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final isCompleted = lesson.status == 'Đã hoàn thành';
-
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      elevation: 2,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              // Số thứ tự bài học, nếu học xong thì hiển thị dấu check
-              Container(
-                width: 36,
-                height: 36,
-                decoration: BoxDecoration(
-                  color: isCompleted ? Colors.green[100] : Colors.blue[50],
-                  borderRadius: BorderRadius.circular(18),
-                ),
-                alignment: Alignment.center,
-                child: isCompleted
-                    ? const Icon(Icons.check, size: 20, color: Colors.green)
-                    : Text(
-                        '$index',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                        ),
-                      ),
-              ),
-              const SizedBox(width: 16),
-
-              // Thông tin bài học
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        // Icon loại bài học
-                        const Icon(Icons.article, size: 18, color: Colors.grey),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Text(
-                            lesson.title,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      lesson.contentSummary ?? '',
-                      style: TextStyle(fontSize: 14, color: Colors.grey[600]),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
-              ),
-
-              // Nút play/continue
-              IconButton(
-                onPressed: onTap,
-                icon: Icon(
-                  isCompleted ? Icons.replay : Icons.play_arrow,
-                  color: Colors.blue,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-// Màn hình chi tiết bài học
-class LessonDetailScreen extends StatelessWidget {
-  final Lesson lesson;
-
-  const LessonDetailScreen({super.key, required this.lesson});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(lesson.title)),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.article, size: 64, color: Colors.blue),
-            const SizedBox(height: 20),
-            Text(
-              lesson.title,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              lesson.contentSummary ?? '',
-              style: const TextStyle(fontSize: 16, color: Colors.grey),
-              textAlign: TextAlign.center,
-            ),
-          ],
+        builder: (_) => ChangeNotifierProvider(
+          create: (_) => Viewmodellessons()..fetchLessonsContents(),
+          child: const Lessoncontents(),
         ),
       ),
     );

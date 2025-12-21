@@ -1,5 +1,6 @@
 using Application.DTOs;
 using Application.Interfaces;
+using Application.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Controllers;
@@ -40,13 +41,13 @@ public class LessonController : ControllerBase
 
     [HttpGet]
     [Route("LessonContent")]
-    public async Task<ActionResult<List<LessonBlockDto>>> GetLessonBlock()
+    public async Task<ActionResult<LessonBlockResponse>> GetLessonBlock()
     {
         try
         {
-            var lessons = await _lessonService.GetLessonsAsync();
+            var lessons = await _lessonService.GetLessonsBlocksAsync();
 
-            if (lessons == null || !lessons.Any())
+            if (lessons == null)
                 return NoContent();
 
             return Ok(lessons);
